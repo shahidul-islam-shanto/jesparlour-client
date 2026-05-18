@@ -3,22 +3,6 @@ import Swal from "sweetalert2";
 import heroImg from "../../assets/hero.png";
 import useAuth from "../../hooks/useAuth";
 
-const getLoginErrorMessage = (error) => {
-  if (error?.code === "auth/invalid-credential") {
-    return "Email or password is incorrect.";
-  }
-
-  if (error?.code === "auth/user-not-found") {
-    return "No account was found with this email.";
-  }
-
-  if (error?.code === "auth/wrong-password") {
-    return "Password is incorrect.";
-  }
-
-  return error?.message || "Something went wrong. Please try again.";
-};
-
 const Login = () => {
   const { singInEmailPassword } = useAuth();
 
@@ -41,7 +25,7 @@ const Login = () => {
         console.error(error);
         Swal.fire({
           title: "Login failed",
-          text: getLoginErrorMessage(error),
+          text: error.message || "Something went wrong. Please try again.",
           icon: "error",
         });
       });
@@ -83,9 +67,7 @@ const Login = () => {
 
           <form onSubmit={handleLogin} className="grid gap-5">
             <label className="grid gap-2">
-              <span className="text-[15px] font-semibold text-nu20">
-                Email
-              </span>
+              <span className="text-[15px] font-semibold text-nu20">Email</span>
               <input
                 type="email"
                 placeholder="you@example.com"
@@ -111,10 +93,7 @@ const Login = () => {
                 <input type="checkbox" className="h-4 w-4 accent-secondary1" />
                 Remember me
               </label>
-              <a
-                href="/"
-                className="text-[14px] font-semibold text-secondary1"
-              >
+              <a href="/" className="text-[14px] font-semibold text-secondary1">
                 Forgot password?
               </a>
             </div>

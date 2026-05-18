@@ -1,6 +1,5 @@
 @import "tailwindcss";
-
-
+@plugin "daisyui";
 
 @theme {
   /* --animate-ripple: ripple 1s linear infinite; */
@@ -14,7 +13,6 @@
   --color-nu20: #000000;
   --color-nu30: #feecf2;
   --color-nu40: #737373;
- 
 
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
