@@ -3,7 +3,17 @@ import { navItems } from "../../data/homePageData";
 import useAuth from "../../hooks/useAuth";
 
 const NavBer = () => {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
+
+  const handleLogout = () => {
+    logOut()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <header className="sticky left-0 top-0 z-20 w-full border-b border-nu30/70 bg-white/95 backdrop-blur">
       <nav className="container-2 flex items-center justify-between py-6">
@@ -30,10 +40,10 @@ const NavBer = () => {
           {user ? (
             <>
               <NavLink
-                to="/login"
+                onClick={handleLogout}
                 className="rounded-md bg-secondary1 px-8 py-3 text-[16px] font-semibold text-white shadow-sm transition hover:bg-[#d92e68]"
               >
-                Sing Out
+                Sign Out
               </NavLink>
             </>
           ) : (
