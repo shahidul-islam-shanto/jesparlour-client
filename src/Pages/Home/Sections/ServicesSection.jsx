@@ -1,9 +1,18 @@
+import { useEffect, useState } from "react";
 import PrimaryButton from "../../../Components/Buttons/PrimaryButton";
 import ServiceCard from "../../../Components/Cards/ServiceCard";
 import SectionHeading from "../../../Components/SectionHeading/SectionHeading";
-import { services } from "../../../data/homePageData";
+
 
 const ServicesSection = () => {
+
+  const [services, setServices] = useState([])
+
+  useEffect(()=>{
+    fetch('http://localhost:3000/services')
+    .then(res => res.json())
+    .then(data => setServices(data))
+  }, [])
   return (
     <section id="our-portfolio" className="container-2 py-20 lg:py-28">
       <SectionHeading className="wow fadeInUp">

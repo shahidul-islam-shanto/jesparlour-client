@@ -1,4 +1,3 @@
-import React from "react";
 import useAuth from "../hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
 
@@ -16,3 +15,4 @@ const PrivateRoute = ({ children }) => {
 };
 
 export default PrivateRoute;
+
