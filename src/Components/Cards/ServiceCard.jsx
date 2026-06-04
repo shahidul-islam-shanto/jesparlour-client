@@ -6,7 +6,7 @@ const ServiceCard = ({ service , delay}) => {
   const { icon, title, price, description } = service;
 
   return (
-    <Link to={"/service"}>
+    <Link to={"/serviceDetails"}>
       <div className=" px-8 py-8 text-center shadow-xl rounded-2xl">
         <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-nu20 text-xl font-bold text-secondary1">
           {icon}
