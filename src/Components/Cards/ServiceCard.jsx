@@ -7,7 +7,7 @@ const ServiceCard = ({ service , delay}) => {
 
   return (
     <Link to={"/service"}>
-      <div className="wow fadeInUp rounded-md bg-nu10 p-8 text-center shadow-[0_12px_36px_rgba(0,0,0,0.08)] transition hover:-translate-y-1">
+      <div className=" px-8 py-8 text-center shadow-xl rounded-2xl">
         <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-nu20 text-xl font-bold text-secondary1">
           {icon}
         </div>

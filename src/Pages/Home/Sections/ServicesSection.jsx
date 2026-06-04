@@ -22,11 +22,11 @@ const ServicesSection = () => {
         Our Awesome <span className="text-secondary1">Services</span>
       </SectionHeading>
 
-      <div className="grid grid-cols-12 gap-4">
-        {services.map((service) => (
+      <div className="grid grid-cols-12 gap-4 mt-10">
+        {services.map((service, index) => (
           <div className="col-span-4">
             <ServiceCard
-              key={service.id}
+              key={service.index}
               service={service}
               // delay={`${index * 0.12}s`}
             />
