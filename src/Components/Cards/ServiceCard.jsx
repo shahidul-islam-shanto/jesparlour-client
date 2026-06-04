@@ -1,9 +1,10 @@
-
 import { Link } from "react-router-dom";
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, delay = "0s" }) => {
+  console.log(service);
+  console.log(delay);
+  const { icon, title, price, description } = service;
 
-  
   return (
     <Link to={"/service"}>
       <article
