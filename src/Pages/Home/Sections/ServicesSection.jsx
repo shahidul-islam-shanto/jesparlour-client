@@ -2,30 +2,35 @@ import { useEffect, useState } from "react";
 import PrimaryButton from "../../../Components/Buttons/PrimaryButton";
 import ServiceCard from "../../../Components/Cards/ServiceCard";
 import SectionHeading from "../../../Components/SectionHeading/SectionHeading";
-
+// import { services as fallbackServices } from "../../../data/homePageData";
 
 const ServicesSection = () => {
+  const [services, setServices] = useState([]);
 
-  const [services, setServices] = useState([])
+  useEffect(() => {
+    fetch("http://localhost:3000/services")
+      .then((res) => res.json())
+      .then((data) => {
+        const items = data.slice(0, 6);
+        setServices(items);
+      });
+  }, []);
 
-  useEffect(()=>{
-    fetch('http://localhost:3000/services')
-    .then(res => res.json())
-    .then(data => setServices(data))
-  }, [])
   return (
     <section id="our-portfolio" className="container-2 py-20 lg:py-28">
       <SectionHeading className="wow fadeInUp">
         Our Awesome <span className="text-secondary1">Services</span>
       </SectionHeading>
 
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
-        {services.map((service, index) => (
-          <ServiceCard
-            key={service.title}
-            service={service}
-            delay={`${index * 0.12}s`}
-          />
+      <div className="grid grid-cols-12 gap-4">
+        {services.map((service) => (
+          <div className="col-span-4">
+            <ServiceCard
+              key={service.id}
+              service={service}
+              // delay={`${index * 0.12}s`}
+            />
+          </div>
         ))}
       </div>
 
