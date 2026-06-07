@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-  if (!service) return null;
-
-  const { icon, title, price, description } = service;
+  const { _id, icon, title, price, description } = service;
 
   return (
-    <Link to={"/serviceDetails"}>
+    <Link to={`/serviceDetails/${_id}`}>
       <div className="h-full rounded-lg px-6 py-8 text-center shadow-xl transition hover:-translate-y-1 hover:shadow-2xl sm:px-8">
         <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-nu20 text-xl font-bold text-secondary1">
           {icon}

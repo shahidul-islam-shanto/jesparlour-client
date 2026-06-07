@@ -9,6 +9,7 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import PrimaryButton from "../../../Components/Buttons/PrimaryButton";
+import { useLoaderData } from "react-router-dom";
 
 const keyFeatures = [
   "Personalized skin and beauty consultation before your session",
@@ -51,6 +52,11 @@ const quickValues = [
 ];
 
 const ServiceDetails = () => {
+  const service = useLoaderData();
+  console.log("this is a details", service);
+
+  const { icon, title, price, description } = service;
+
   return (
     <section className="bg-primary1 py-14 md:py-20">
       <div className="container-2">
@@ -59,20 +65,21 @@ const ServiceDetails = () => {
             <p className="text-secondary1 font-semibold uppercase tracking-[0.18em]">
               Premium Beauty Service
             </p>
-            <h1 className="mt-4 max-w-3xl text-nu20">
-              Reveal Your Signature Glow With Expert Care
-            </h1>
+            <div className="mt-4 flex flex-wrap items-center gap-4">
+              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-nu20 text-xl font-bold text-secondary1">
+                {icon}
+              </span>
+              <h1 className="max-w-3xl text-nu20">{title}</h1>
+            </div>
+            <p className="mt-5 max-w-3xl text-nu40">{description}</p>
             <p className="mt-5 max-w-3xl text-nu40">
               Step into a refined beauty experience created for clients who want
               visible results, calm attention, and a finish that feels
-              effortlessly polished. Our premium glow treatment blends
-              professional consultation, targeted skin care, and elegant styling
-              details to help you look fresh, confident, and ready for any
-              occasion.
+              effortlessly polished.
             </p>
 
             <div className="mt-10 border-y border-nu30 py-8">
-              <h2 className="text-nu20">What's Included / Key Features</h2>
+              <h2 className="text-nu20">{title}</h2>
               <p className="mt-3 max-w-2xl text-nu40">
                 Every session is tailored around your needs, so the service
                 feels personal from the first consultation to the final glow.
@@ -102,9 +109,7 @@ const ServiceDetails = () => {
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-nu30 text-base font-semibold text-secondary1">
                       {index + 1}
                     </span>
-                    <h3 className="mt-5 text-[20px] text-nu20">
-                      {step.title}
-                    </h3>
+                    <h3 className="mt-5 text-[20px] text-nu20">{step.title}</h3>
                     <p className="mt-3 text-nu40">{step.description}</p>
                   </div>
                 ))}
@@ -121,10 +126,10 @@ const ServiceDetails = () => {
               <div className="mt-5">
                 <p className="text-nu40">Starting from</p>
                 <p className="mt-2 text-[42px] font-bold leading-none text-nu20">
-                  $199
-                  <span className="inline text-lg font-medium text-nu40">
+                  {price}
+                  {/* <span className="inline text-lg font-medium text-nu40">
                     /session
-                  </span>
+                  </span> */}
                 </p>
               </div>
 

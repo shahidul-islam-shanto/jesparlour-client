@@ -8,6 +8,15 @@ import OurTeam from "../Pages/OurTeam/OurTeam";
 import Registration from "../Pages/Registration/Registration";
 import ServiceDetails from "../Pages/Home/Sections/ServiceDetails";
 
+const serviceDetailsLoader = async ({ params }) => {
+  const response = await fetch("http://localhost:3000/services");
+
+  const services = await response.json();
+  const service = services.find(({ _id }) => _id === params.id);
+
+  return service;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,9 +47,10 @@ const router = createBrowserRouter([
         element: <Registration />,
       },
       {
-        path: "/serviceDetails",
-        element: <ServiceDetails/> 
-      }
+        path: "serviceDetails/:id",
+        element: <ServiceDetails />,
+        loader: serviceDetailsLoader,
+      },
     ],
   },
 ]);
