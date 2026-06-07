@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import PrimaryButton from "../../../Components/Buttons/PrimaryButton";
 import ServiceCard from "../../../Components/Cards/ServiceCard";
 import SectionHeading from "../../../Components/SectionHeading/SectionHeading";
-// import { services as fallbackServices } from "../../../data/homePageData";
 
 const ServicesSection = () => {
   const [services, setServices] = useState([]);
@@ -17,24 +16,22 @@ const ServicesSection = () => {
   }, []);
 
   return (
-    <section id="our-portfolio" className="container-2 py-20 lg:py-28">
-      <SectionHeading className="wow fadeInUp">
+    <section id="our-portfolio" className="container-2 py-16 md:py-20 lg:py-28">
+      <SectionHeading data-aos="fade-up">
         Our Awesome <span className="text-secondary1">Services</span>
       </SectionHeading>
 
-      <div className="grid grid-cols-12 gap-4 mt-10">
+      <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service, index) => (
-          <div className="col-span-4">
+          <div key={service.title} data-aos="fade-up" data-aos-delay={index * 80}>
             <ServiceCard
-              key={service.index}
               service={service}
-              // delay={`${index * 0.12}s`}
             />
           </div>
         ))}
       </div>
 
-      <div className="wow fadeInUp mt-12 text-center">
+      <div className="mt-12 text-center" data-aos="fade-up">
         <PrimaryButton to="/contact-us">Explore More</PrimaryButton>
       </div>
     </section>

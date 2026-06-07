@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../Components/Footer/Footer";
 import NavBer from "../Components/NavBer/NavBer";
-import { useWow } from "../hooks/useWow";
+import { useAos } from "../hooks/useAos";
 
 const Root = () => {
-  useWow();
+  useAos();
 
   return (
     <div className="min-h-screen bg-white text-nu20">

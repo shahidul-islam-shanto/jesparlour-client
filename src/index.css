@@ -161,76 +161,6 @@
 }
 
 @layer utilities {
-  .wow {
-    opacity: 0;
-    will-change: opacity, transform;
-  }
-
-  .wow.animated {
-    animation-duration: 0.9s;
-    animation-fill-mode: both;
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .fadeInUp.animated {
-    animation-name: fadeInUp;
-  }
-
-  .fadeInLeft.animated {
-    animation-name: fadeInLeft;
-  }
-
-  .fadeInRight.animated {
-    animation-name: fadeInRight;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .wow {
-      opacity: 1;
-      transform: none;
-    }
-
-    .wow.animated {
-      animation: none;
-    }
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translate3d(0, 32px, 0);
-    }
-
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translate3d(-32px, 0, 0);
-    }
-
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  @keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translate3d(32px, 0, 0);
-    }
-
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -283,7 +213,12 @@
     line-height: 150%;
     font-size: 16px;
     overflow-y: scroll;
+    overflow-x: clip;
     list-style: none;
+  }
+
+  html {
+    overflow-x: clip;
   }
 
   input.picker[type="date"] {

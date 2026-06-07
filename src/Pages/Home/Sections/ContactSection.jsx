@@ -8,11 +8,11 @@ const ContactSection = () => {
   return (
     <section id="contact-us" className="bg-primary1 py-20 lg:py-28">
       <div className="container-2">
-        <SectionHeading className="wow fadeInUp">
+        <SectionHeading data-aos="fade-up">
           Let us handle your project, professionally.
         </SectionHeading>
 
-        <form className="wow fadeInUp mx-auto mt-12 grid max-w-180 gap-5">
+        <form className="mx-auto mt-12 grid max-w-180 gap-5" data-aos="fade-up">
           <div className="grid gap-5 md:grid-cols-2">
             <input type="text" placeholder="First name" className={inputClass} />
             <input type="text" placeholder="Last name" className={inputClass} />

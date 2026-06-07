@@ -16,8 +16,11 @@ const NavBer = () => {
   };
   return (
     <header className="sticky left-0 top-0 z-20 w-full border-b border-nu30/70 bg-white/95 backdrop-blur">
-      <nav className="container-2 flex items-center justify-between py-6">
-        <NavLink to="/" className="text-2xl font-bold tracking-tight text-nu20">
+      <nav className="container-2 flex items-center justify-between gap-4 py-4 sm:py-5 lg:py-6">
+        <NavLink
+          to="/"
+          className="min-w-0 text-xl font-bold tracking-tight text-nu20 sm:text-2xl"
+        >
           Jerin's <span className="inline text-secondary1">Parlour</span>
         </NavLink>
 
@@ -36,12 +39,12 @@ const NavBer = () => {
             </NavLink>
           ))}
         </div>
-        <div className="">
+        <div className="shrink-0">
           {user ? (
             <>
               <NavLink
                 onClick={handleLogout}
-                className="rounded-md bg-secondary1 px-8 py-3 text-[16px] font-semibold text-white shadow-sm transition hover:bg-[#d92e68]"
+                className="rounded-md bg-secondary1 px-4 py-2.5 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#d92e68] sm:px-8 sm:py-3 sm:text-[16px]"
               >
                 Sign Out
               </NavLink>
@@ -50,7 +53,7 @@ const NavBer = () => {
             <>
               <NavLink
                 to="/login"
-                className="rounded-md bg-secondary1 px-8 py-3 text-[16px] font-semibold text-white shadow-sm transition hover:bg-[#d92e68]"
+                className="rounded-md bg-secondary1 px-4 py-2.5 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#d92e68] sm:px-8 sm:py-3 sm:text-[16px]"
               >
                 Login
               </NavLink>

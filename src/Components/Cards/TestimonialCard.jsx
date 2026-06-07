@@ -4,11 +4,12 @@ const getInitials = (name) =>
     .map((part) => part[0])
     .join("");
 
-const TestimonialCard = ({ item, delay = "0s", className = "" }) => {
+const TestimonialCard = ({ item, delay = 0, className = "" }) => {
   return (
     <article
-      className={`wow fadeInUp h-full rounded-md border border-nu30 bg-white p-7 ${className}`}
-      style={{ animationDelay: delay }}
+      className={`h-full rounded-md border border-nu30 bg-white p-7 ${className}`}
+      data-aos="fade-up"
+      data-aos-delay={delay}
     >
       <div className="flex items-center gap-4">
         <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-nu30 text-lg font-bold text-secondary1">

@@ -5,7 +5,7 @@ const ProfessionalCareSection = () => {
   return (
     <section className="bg-primary1 py-20 lg:py-28">
       <div className="container-2 grid items-center gap-12 lg:grid-cols-[0.9fr_1fr]">
-        <div className="wow fadeInLeft overflow-hidden rounded-md bg-nu30">
+        <div className="overflow-hidden rounded-md bg-nu30" data-aos="fade-right">
           <img
             src={heroImg}
             alt="Professional salon treatment"
@@ -13,7 +13,7 @@ const ProfessionalCareSection = () => {
           />
         </div>
 
-        <div className="wow fadeInRight">
+        <div data-aos="fade-left">
           <h2 className="max-w-140 text-[32px] font-bold leading-tight md:text-[42px]">
             Let us handle your skin
             <span className="text-secondary1">Professionally</span>.

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-nu20 py-12 text-white">
       <div className="container-2 grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
-        <div className="wow fadeInUp">
+        <div data-aos="fade-up">
           <NavLink to="/" className="text-2xl font-bold tracking-tight">
             Jerin's <span className="inline text-secondary1">Parlour</span>
           </NavLink>
@@ -15,7 +15,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="wow fadeInUp" style={{ animationDelay: "0.1s" }}>
+        <div data-aos="fade-up" data-aos-delay="100">
           <h2 className="text-[18px] font-semibold text-white">Explore</h2>
           <div className="mt-5 grid gap-3">
             {navItems.map((item) => (
@@ -30,7 +30,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="wow fadeInUp" style={{ animationDelay: "0.2s" }}>
+        <div data-aos="fade-up" data-aos-delay="200">
           <h2 className="text-[18px] font-semibold text-white">Contact</h2>
           <div className="mt-5 grid gap-3 text-[15px] text-white/70">
             <p>House 10, Road 12, Dhaka</p>

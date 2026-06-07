@@ -48,9 +48,9 @@ const TestimonialsSection = () => {
   return (
     <section id="our-team" className="overflow-hidden py-20 lg:py-28">
       <div className="container-2">
-        <SectionHeading className="wow fadeInUp">Testimonials</SectionHeading>
+        <SectionHeading data-aos="fade-up">Testimonials</SectionHeading>
 
-        <div className="wow fadeInUp mt-14">
+        <div className="mt-14" data-aos="fade-up">
           <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-700 ease-out"
@@ -66,7 +66,7 @@ const TestimonialsSection = () => {
                 >
                   <TestimonialCard
                     item={item}
-                    delay={`${index * 0.08}s`}
+                    delay={index * 80}
                     className="shadow-[0_12px_36px_rgba(0,0,0,0.05)]"
                   />
                 </div>
