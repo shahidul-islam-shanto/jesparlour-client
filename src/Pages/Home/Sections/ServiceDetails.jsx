@@ -55,7 +55,7 @@ const ServiceDetails = () => {
   const service = useLoaderData();
   console.log("this is a details", service);
 
-  const { icon, title, price, description } = service;
+  const { _id, icon, title, price, description } = service;
 
   return (
     <section className="bg-primary1 py-14 md:py-20">
@@ -141,8 +141,8 @@ const ServiceDetails = () => {
                 ))}
               </div>
 
-              <PrimaryButton className="mt-6 w-full" to="/contact-us">
-                Book Your Glow Session
+              <PrimaryButton className="mt-6 w-full" to={`/addToCart/${_id}`}>
+                Add To Cart
               </PrimaryButton>
 
               <div className="mt-5 flex items-center justify-center gap-2 text-nu40">
