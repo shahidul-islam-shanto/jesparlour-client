@@ -127,9 +127,6 @@ const ServiceDetails = () => {
                 <p className="text-nu40">Starting from</p>
                 <p className="mt-2 text-[42px] font-bold leading-none text-nu20">
                   {price}
-                  {/* <span className="inline text-lg font-medium text-nu40">
-                    /session
-                  </span> */}
                 </p>
               </div>
 
