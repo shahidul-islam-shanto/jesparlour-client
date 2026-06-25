@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import PrimaryButton from "../../../Components/Buttons/PrimaryButton";
 import { useLoaderData } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const keyFeatures = [
   "Personalized skin and beauty consultation before your session",
@@ -52,10 +53,25 @@ const quickValues = [
 ];
 
 const ServiceDetails = () => {
+  const { user } = useAuth();
   const service = useLoaderData();
   console.log("this is a details", service);
 
   const { _id, icon, title, price, description } = service;
+
+  
+
+  if (user && user.email) {
+    const cardItem = {
+      menuId: _id,
+      email: user.email,
+      name: title,
+      image,
+      price,
+    };
+  }
+
+  const handleAddToCart = (serviceId) => {};
 
   return (
     <section className="bg-primary1 py-14 md:py-20">
@@ -141,7 +157,10 @@ const ServiceDetails = () => {
                 ))}
               </div>
 
-              <PrimaryButton className="mt-6 w-full" onClick={() => handleAddToCart(_id)}>
+              <PrimaryButton
+                className="mt-6 w-full"
+                onClick={() => handleAddToCart(_id)}
+              >
                 Add To Cart
               </PrimaryButton>
 
