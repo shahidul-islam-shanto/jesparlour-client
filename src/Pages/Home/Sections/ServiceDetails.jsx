@@ -141,7 +141,7 @@ const ServiceDetails = () => {
                 ))}
               </div>
 
-              <PrimaryButton className="mt-6 w-full" to={`/addToCart/${_id}`}>
+              <PrimaryButton className="mt-6 w-full" onClick={() => handleAddToCart(_id)}>
                 Add To Cart
               </PrimaryButton>
 
