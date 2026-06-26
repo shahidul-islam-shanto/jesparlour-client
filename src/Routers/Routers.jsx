@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
-        path: "addToCart/:id",
+        path: "addToCart",
         element: <AddToCart />,
         loader: addToCartLoader,
       },

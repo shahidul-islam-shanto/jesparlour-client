@@ -9,7 +9,7 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import PrimaryButton from "../../../Components/Buttons/PrimaryButton";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 
 const keyFeatures = [
@@ -58,8 +58,6 @@ const ServiceDetails = () => {
   console.log("this is a details", service);
 
   const { _id, icon, title, price, description } = service;
-
-  
 
   if (user && user.email) {
     const cardItem = {
@@ -157,12 +155,14 @@ const ServiceDetails = () => {
                 ))}
               </div>
 
-              <PrimaryButton
-                className="mt-6 w-full"
-                onClick={() => handleAddToCart(_id)}
-              >
-                Add To Cart
-              </PrimaryButton>
+              <Link to={"/addToCart"}>
+                <PrimaryButton
+                  className="mt-6 w-full"
+                  onClick={() => handleAddToCart(_id)}
+                >
+                  Add To Cart
+                </PrimaryButton>
+              </Link>
 
               <div className="mt-5 flex items-center justify-center gap-2 text-nu40">
                 <FaCreditCard className="text-secondary1" />
