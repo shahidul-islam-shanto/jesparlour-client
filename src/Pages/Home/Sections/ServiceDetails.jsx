@@ -9,8 +9,7 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import PrimaryButton from "../../../Components/Buttons/PrimaryButton";
-import { Link, useLoaderData } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
+import { useLoaderData } from "react-router-dom";
 
 const keyFeatures = [
   "Personalized skin and beauty consultation before your session",
@@ -53,23 +52,26 @@ const quickValues = [
 ];
 
 const ServiceDetails = () => {
-  const { user } = useAuth();
   const service = useLoaderData();
-  console.log("this is a details", service);
+  const { icon, title, price, description } = service || {};
 
-  const { _id, icon, title, price, description } = service;
-
-  if (user && user.email) {
-    const cardItem = {
-      menuId: _id,
-      email: user.email,
-      name: title,
-      image,
-      price,
-    };
+  if (!service) {
+    return (
+      <section className="bg-primary1 py-14 md:py-20">
+        <div className="container-2">
+          <div className="rounded-lg border border-nu30 bg-white p-8 text-center shadow-xl">
+            <h1 className="text-nu20">Service not found</h1>
+            <p className="mt-3 text-nu40">
+              The service you are looking for is not available right now.
+            </p>
+            <PrimaryButton className="mt-6" to="/">
+              Back To Home
+            </PrimaryButton>
+          </div>
+        </div>
+      </section>
+    );
   }
-
-  const handleAddToCart = (serviceId) => {};
 
   return (
     <section className="bg-primary1 py-14 md:py-20">
@@ -155,14 +157,9 @@ const ServiceDetails = () => {
                 ))}
               </div>
 
-              <Link to={"/addToCart"}>
-                <PrimaryButton
-                  className="mt-6 w-full"
-                  onClick={() => handleAddToCart(_id)}
-                >
-                  Add To Cart
-                </PrimaryButton>
-              </Link>
+              <PrimaryButton className="mt-6 w-full" to="/addToCart">
+                Add To Cart
+              </PrimaryButton>
 
               <div className="mt-5 flex items-center justify-center gap-2 text-nu40">
                 <FaCreditCard className="text-secondary1" />
