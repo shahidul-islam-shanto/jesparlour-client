@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 const Registration = () => {
   const { createUser } = useAuth();
+  
 
   const handleRegister = (e) => {
     e.preventDefault();

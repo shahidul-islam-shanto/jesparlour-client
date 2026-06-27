@@ -5,6 +5,10 @@ import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const { singInEmailPassword } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation;
+
+  const fromState = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -28,6 +32,7 @@ const Login = () => {
           text: error.message || "Something went wrong. Please try again.",
           icon: "error",
         });
+        navigate(fromState, { replace: true });
       });
   };
 

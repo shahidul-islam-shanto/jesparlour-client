@@ -55,23 +55,25 @@ const ServiceDetails = () => {
   const service = useLoaderData();
   const { icon, title, price, description } = service || {};
 
-  if (!service) {
-    return (
-      <section className="bg-primary1 py-14 md:py-20">
-        <div className="container-2">
-          <div className="rounded-lg border border-nu30 bg-white p-8 text-center shadow-xl">
-            <h1 className="text-nu20">Service not found</h1>
-            <p className="mt-3 text-nu40">
-              The service you are looking for is not available right now.
-            </p>
-            <PrimaryButton className="mt-6" to="/">
-              Back To Home
-            </PrimaryButton>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  // if (!service) {
+  //   return (
+  //     <section className="bg-primary1 py-14 md:py-20">
+  //       <div className="container-2">
+  //         <div className="rounded-lg border border-nu30 bg-white p-8 text-center shadow-xl">
+  //           <h1 className="text-nu20">Service not found</h1>
+  //           <p className="mt-3 text-nu40">
+  //             The service you are looking for is not available right now.
+  //           </p>
+  //           <PrimaryButton className="mt-6" to="/">
+  //             Back To Home
+  //           </PrimaryButton>
+  //         </div>
+  //       </div>
+  //     </section>
+  //   );
+  // }
+
+  
 
   return (
     <section className="bg-primary1 py-14 md:py-20">
