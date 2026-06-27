@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import heroImg from "../../assets/hero.png";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Login = () => {
   const { singInEmailPassword } = useAuth();

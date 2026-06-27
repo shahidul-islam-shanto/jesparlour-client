@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import heroImg from "../../assets/hero.png";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const { createUser } = useAuth();
-  
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ const Registration = () => {
           text: error.message || "Something went wrong. Please try again.",
           icon: "error",
         });
+        navigate("/login");
       });
   };
 
