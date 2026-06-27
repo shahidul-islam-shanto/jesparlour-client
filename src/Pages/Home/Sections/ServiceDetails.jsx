@@ -10,6 +10,8 @@ import {
 } from "react-icons/fa";
 import PrimaryButton from "../../../Components/Buttons/PrimaryButton";
 import { useLoaderData } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const keyFeatures = [
   "Personalized skin and beauty consultation before your session",
@@ -53,6 +55,8 @@ const quickValues = [
 
 const ServiceDetails = () => {
   const service = useLoaderData();
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const { icon, title, price, description } = service || {};
 
   // if (!service) {
@@ -72,8 +76,27 @@ const ServiceDetails = () => {
   //     </section>
   //   );
   // }
-
-  
+  if (user && user.email) {
+    //  user created
+    const cardItem = {
+      menuId: _id,
+      email: user.email,
+      name,
+      image,
+      price,
+    };
+    axiosSecure.post("/addToCart", cardItem).then((data) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          title: "Successfully Card Add!",
+          text: "Your file has been Add.",
+          icon: "success",
+        });
+        // refetch card to update the items counts
+        refetch();
+      }
+    });
+  }
 
   return (
     <section className="bg-primary1 py-14 md:py-20">
