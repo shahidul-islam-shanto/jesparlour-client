@@ -14,6 +14,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useCard from "../../../hooks/useCard";
 
 const keyFeatures = [
   "Personalized skin and beauty consultation before your session",
@@ -61,49 +62,55 @@ const ServiceDetails = () => {
   const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const navigate = useNavigate();
+  const [, refetch] = useCard();
 
-  const { icon, title, price, description } = service || {};
+  const { _id, icon, title, price, description } = service || {};
 
-  if (user && user.email) {
-    //  user created
+  const handleAddToCart = async () => {
+    if (!user?.email) {
+      Swal.fire({
+        title: "You are not Log In?",
+        text: "Please login to add to the card!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, log in!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+      return;
+    }
+
     const cardItem = {
-      menuId: _id,
       email: user.email,
-      name,
-      image,
+      name: title,
+      icon,
       price,
     };
-    axiosSecure.post("/addToCart", cardItem).then((data) => {
+
+    try {
+      const res = await axiosSecure.post("/addToCart", cardItem);
+
       if (res.data.insertedId) {
         Swal.fire({
           title: "Successfully Card Add!",
           text: "Your file has been Add.",
           icon: "success",
         });
-        // refetch card to update the items counts
         refetch();
+        navigate("/addToCart");
       }
-    });
-  } else {
-    Swal.fire({
-      title: "You are not Log In?",
-      text: "Please login to add to the card!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, log in!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate("/login", { state: { from: location } });
-        // Swal.fire({
-        //   title: "Deleted!",
-        //   text: "Your file has been deleted.",
-        //   icon: "success",
-        // });
-      }
-    });
-  }
+    } catch (error) {
+      Swal.fire({
+        title: "Something went wrong",
+        text: error.message,
+        icon: "error",
+      });
+    }
+  };
 
   return (
     <section className="bg-primary1 py-14 md:py-20">
@@ -188,8 +195,11 @@ const ServiceDetails = () => {
                   </div>
                 ))}
               </div>
-
-              <PrimaryButton className="mt-6 w-full" to="/addToCart">
+              <PrimaryButton
+                type="button"
+                className="mt-6 w-full"
+                onClick={handleAddToCart}
+              >
                 Add To Cart
               </PrimaryButton>
 
