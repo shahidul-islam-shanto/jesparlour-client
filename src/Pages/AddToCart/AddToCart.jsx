@@ -1,6 +1,8 @@
 import { FaCalendarCheck, FaCheckCircle, FaCreditCard, FaTrash } from "react-icons/fa";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import useAddCard from "../../hooks/useAddCard";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const cartBenefits = [
   "Professional consultation included",
@@ -19,12 +21,52 @@ const getPriceValue = (price) => {
 const formatPrice = (amount) => `$${amount.toFixed(2)}`;
 
 const AddToCart = () => {
-  const [addToCart, , isLoading, error] = useAddCard();
+  const [addToCart, refetch, isLoading, error] = useAddCard();
+  const axiosPublic = useAxiosPublic();
   const cartItems = Array.isArray(addToCart) ? addToCart : [];
   const totalPrice = cartItems.reduce(
     (total, item) => total + getPriceValue(item.price),
     0
   );
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic
+          .delete(`/addToCart/${id}`)
+          .then((res) => {
+            const isDeleted =
+              res.data.deletedCount > 0 ||
+              res.data.acknowledged ||
+              res.status === 200;
+
+            if (isDeleted) {
+              refetch();
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your service has been removed.",
+                icon: "success",
+              });
+            }
+          })
+          .catch((deleteError) => {
+            Swal.fire({
+              title: "Delete failed",
+              text: deleteError.message,
+              icon: "error",
+            });
+          });
+      }
+    });
+  };
 
   return (
     <main className="min-h-screen bg-primary1 py-12 md:py-16">
@@ -96,6 +138,7 @@ const AddToCart = () => {
 
                         <button
                           type="button"
+                          onClick={() => handleDelete(item._id)}
                           className="mt-6 inline-flex items-center gap-2 text-[15px] font-semibold text-nu40 transition hover:text-secondary1"
                         >
                           <FaTrash />
