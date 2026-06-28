@@ -1,5 +1,5 @@
-import React from "react";
 import useAxiosPublic from "./useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const useAddCard = () => {
   const axiosPublic = useAxiosPublic();

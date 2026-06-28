@@ -85,6 +85,7 @@ const ServiceDetails = () => {
     }
 
     const cardItem = {
+      menuId: _id,
       email: user.email,
       name: title,
       icon,

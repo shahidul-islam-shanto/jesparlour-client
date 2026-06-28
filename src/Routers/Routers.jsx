@@ -18,15 +18,6 @@ const serviceDetailsLoader = async ({ params }) => {
   return service;
 };
 
-const addToCartLoader = async ({ params }) => {
-  const response = await fetch("http://localhost:3000/services");
-
-  const services = await response.json();
-  const service = services.find(({ _id }) => _id === params.id);
-
-  return service;
-};
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,7 +42,6 @@ const router = createBrowserRouter([
       {
         path: "addToCart",
         element: <AddToCart />,
-        loader: addToCartLoader,
       },
       {
         path: "login",
