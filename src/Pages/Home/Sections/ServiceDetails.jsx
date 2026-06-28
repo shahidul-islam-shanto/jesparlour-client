@@ -12,6 +12,8 @@ import PrimaryButton from "../../../Components/Buttons/PrimaryButton";
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const keyFeatures = [
   "Personalized skin and beauty consultation before your session",
@@ -57,25 +59,11 @@ const ServiceDetails = () => {
   const service = useLoaderData();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const { icon, title, price, description } = service || {};
 
-  // if (!service) {
-  //   return (
-  //     <section className="bg-primary1 py-14 md:py-20">
-  //       <div className="container-2">
-  //         <div className="rounded-lg border border-nu30 bg-white p-8 text-center shadow-xl">
-  //           <h1 className="text-nu20">Service not found</h1>
-  //           <p className="mt-3 text-nu40">
-  //             The service you are looking for is not available right now.
-  //           </p>
-  //           <PrimaryButton className="mt-6" to="/">
-  //             Back To Home
-  //           </PrimaryButton>
-  //         </div>
-  //       </div>
-  //     </section>
-  //   );
-  // }
   if (user && user.email) {
     //  user created
     const cardItem = {
@@ -94,6 +82,25 @@ const ServiceDetails = () => {
         });
         // refetch card to update the items counts
         refetch();
+      }
+    });
+  } else {
+    Swal.fire({
+      title: "You are not Log In?",
+      text: "Please login to add to the card!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log in!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/login", { state: { from: location } });
+        // Swal.fire({
+        //   title: "Deleted!",
+        //   text: "Your file has been deleted.",
+        //   icon: "success",
+        // });
       }
     });
   }
